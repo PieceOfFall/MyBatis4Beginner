@@ -4,20 +4,78 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-<!-- configure mysql environment -->
+    <!--
+    the orders of labels in main configuration file:
+    properties?,settings?,typeAliases?,typeHandlers?,
+    objectFactory?,objectWrapperFactory?,reflectorFactory?,
+    plugins?,environments?,databaseIdProvider?,mappers?
+    -->
+
+    <!-- import properties file -->
+    <properties resource="jdbc.properties"/>
+    <!-- set typeAliases -->
+    <typeAliases>
+        <!--
+        typeAliases: set the alias of a class
+        attribute:
+                  type: set the type of the class that needs alias
+                  alias: specific an alias
+         -->
+        <!-- The default alias is the class name when missing the attribute: alias -->
+        <typeAlias type="com.fall.mybatis.pojo.User" alias="User"/>
+        <package name="com.fall.mybatis.pojo.User"/>
+    </typeAliases>
+    <!--
+    environments: set multiple mysql environment
+    attribute:
+               default: set the id of default environment
+    -->
     <environments default="development">
+        <!--
+         environment: set a specific environment
+         attribute:
+                    id: a unique identifier of the database connection environment (unique)
+         -->
         <environment id="development">
+            <!--
+             transactionManager: set the way to manage the transaction
+             attribute:
+                       type: "JDBC|MANAGED"
+                       JDBC: Use the native management manner in JDBC while executing
+                             SQL statement (should manually commit or rollback transaction)
+                       Managed: Be managed by others ,such as Spring
+             -->
             <transactionManager type="JDBC"></transactionManager>
+            <!--
+             dataSource: set the datasource
+             attribute:
+                       type: "POOLED|UNPOOLED|JNDI"
+                       POOLED: "Use connection pool cache the database connection"
+                       UNPOOLED: "Not use connection pool"
+                       JNDI: "Use the datasource from context"
+             -->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis_02"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
+                <!-- set the database driver -->
+                <property name="driver" value="${jdbc.driver}"/>
+                <!-- set database url -->
+                <property name="url" value="${jdbc.url}"/>
+                <!-- set database username -->
+                <property name="username" value="${jdbc.username}"/>
+                <!-- set database password -->
+                <property name="password" value="${jdbc.password}"/>
             </dataSource>
         </environment>
     </environments>
 <!--  import configuration file  -->
     <mappers>
-        <mapper resource="mappers/UserMapper.xml"></mapper>
+        <!-- <mapper resource="mappers/UserMapper.xml"></mapper> -->
+
+        <!--
+         import the mapping file by package
+         required:
+                  1、the package of mapper interface should be consistent with the package of mapping file
+                  2、the mapper interface should be consistent with the name of the mapper file
+         -->
+        <package name="com.fall.mybatis.mapper"></package>
     </mappers>
 </configuration>
