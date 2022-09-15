@@ -1,6 +1,7 @@
 package com.fall.mybatis.test;
 
 import com.fall.mybatis.mapper.UserMapper;
+import com.fall.mybatis.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -41,6 +42,23 @@ public class MyBatisTest {
 
         //commit transaction
         // sqlSession.commit();
+
+    }
+
+    @Test
+    public void testCRUD() throws IOException {
+        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        // mapper.updateUser();
+        // mapper.deleteUser();
+        // User user = mapper.getUserById();
+        // log.info(user.toString());
+
+        for (User user : mapper.getAllUser()) {
+            log.info(user.toString());
+        }
 
     }
 }
