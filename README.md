@@ -1,2 +1,4 @@
 # MyBatis4Beginner
-It's a project that helps you learn this special ORM framwork.
+
+It's a project that helps you learn this mainstream ORM framwork.
+
