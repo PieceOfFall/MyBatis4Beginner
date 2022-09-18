@@ -15,7 +15,8 @@ public interface ParameterMapper {
     /**
     * @author FAll
     * @description $verify and login
-    * @praram String username, String password
+    * @param username
+    * @param password
     * @date 13:37 2022/9/16
     */
     User checkLogin(String username,String password);
@@ -23,7 +24,7 @@ public interface ParameterMapper {
     /**
      * @author FAll
      * @description $verify and login but the param is a map collection
-     * @praram Map<String,Object> map
+     * @param map
      * @date 14:13 2022/9/16
      */
     User checkLoginByMap(Map<String,Object> map);
@@ -31,23 +32,25 @@ public interface ParameterMapper {
     /**
     * @author FAll
     * @description $verify and login with the annotation @Param
-    * @praram String username,String password
+    * @param username
+    * @param password
     * @date 14:56 2022/9/16
     */
     User checkLoginByParam(@Param("username") String username, @Param("password") String password);
 
     /**
-    * @author FAll
-    * @description $add a user's info
-    * @praram User user
-    * @date 14:29 2022/9/16
-    */
+     *@author FAll
+     *@description add a user's info
+     * @param user
+     * @return: int
+     *@date 2022/9/18 12:59
+     */
     int insertUser(User user);
 
     /**
     * @author FAll
     * @description $query user's info by username
-    * @praram String username
+    * @param username
     * @date 13:08 2022/9/16
     */
     User getUserByUsername(String username);
