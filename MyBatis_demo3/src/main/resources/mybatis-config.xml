@@ -6,6 +6,12 @@
 
     <properties resource="jdbc.properties"/>
 
+    <!-- set mybatis global setting -->
+    <!-- <settings> -->
+    <!--     &lt;!&ndash; map "_" to CamelCase: emp_name->empName &ndash;&gt; -->
+    <!--     <setting name="mapUnderscoreToCamelCase" value="true"/> -->
+    <!-- </settings> -->
+    
     <typeAliases>
         <package name="com.fall.mybatis.pojo"/>
     </typeAliases>

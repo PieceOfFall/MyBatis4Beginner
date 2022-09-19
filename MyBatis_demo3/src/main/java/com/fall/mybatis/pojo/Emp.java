@@ -25,4 +25,6 @@ public class Emp {
 
     private String email;
 
+    private Dept dept;
+
 }
