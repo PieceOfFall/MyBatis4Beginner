@@ -29,4 +29,23 @@ public interface EmpMapper {
      */
     Emp getEmpAndDept(@Param("eid") Integer eid);
 
+    /**
+     * @author FAll
+     * @description get info about user and user's department by query twice (First step
+     *              is as follows, but the second is in the DeptMapper)
+     * @param eid
+     * @return: com.fall.mybatis.pojo.Emp
+     * @date 2022/9/20 17:44
+     */
+    Emp getEmpAndDeptByStepOne(@Param("eid") Integer eid);
+
+    /**
+     * @author FAll
+     * @description step two here
+     * @param did
+     * @return: java.util.List<com.fall.mybatis.pojo.Emp>
+     * @date 2022/9/20 19:34
+     */
+    List<Emp> getDeptAndEmpByStepTwo(@Param("did") Integer did);
+
 }

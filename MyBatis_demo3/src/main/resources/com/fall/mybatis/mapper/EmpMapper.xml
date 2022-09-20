@@ -62,4 +62,33 @@
     <select id="getEmpAndDept" resultMap="empAndDeptResultMapTwo">
         select * from t_emp left join t_dept td on t_emp.did = td.did where t_emp.eid = #{eid}
     </select>
+    
+    <resultMap id="empAndDeptByStepResultMap" type="Emp">
+        <id property="eid" column="eid"/>
+        <result property="empName" column="emp_name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="email" column="email"/>
+        <association property="dept"
+                     select="com.fall.mybatis.mapper.DeptMapper.getEmpAndDeptByStepTwo"
+                     column="did"
+                     fetchType="eager">
+            <id property="did" column="did"/>
+            <result property="deptName" column="dept_name"/>
+        </association>
+    </resultMap>
+    <!--
+     association: select: set a unique identifier for
+                          hybrid lookup (namespace.SQLid or full class name for mapper interface.method name)
+                  column: set the condition for hybrid lookup
+     -->
+    <!-- Emp getEmpAndDeptByStepOne(@Param("eid") Integer eid); -->
+    <select id="getEmpAndDeptByStepOne" resultMap="empAndDeptByStepResultMap">
+        select * from t_emp where eid = #{eid}
+    </select>
+
+    <!-- List<Emp> getDeptAndEmpByStepTwo(@Param("did") Integer did) -->
+    <select id="getDeptAndEmpByStepTwo" resultType="Emp">
+        select * from t_emp where did = #{did}
+    </select>
 </mapper>
