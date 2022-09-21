@@ -1,3 +1,5 @@
+package com.fall.mybatis.test;
+
 import com.fall.mybatis.mapper.DeptMapper;
 import com.fall.mybatis.mapper.EmpMapper;
 import com.fall.mybatis.pojo.Dept;
