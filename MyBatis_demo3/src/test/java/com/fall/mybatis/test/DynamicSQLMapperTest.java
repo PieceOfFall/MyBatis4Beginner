@@ -20,6 +20,12 @@ import java.util.List;
  *  a> It will automatically generate the keyword 'where', and remove redundant
  *     'and','or' in front of the statement when the label has its content inside
  *  b> It won't take effect when nothing is in the label
+ * 3、trim:
+ *    if having params:
+ *      prefix|suffix: add appointed content before|after the label 'trim'
+ *      prefixOverrides|suffixOverrides: remove appointed content before|after the label 'trim'
+ *    if not having params:
+ *      the label 'trim' will not take effect
  */
 
 @Slf4j

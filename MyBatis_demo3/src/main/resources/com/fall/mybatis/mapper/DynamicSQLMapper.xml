@@ -6,6 +6,25 @@
     <!-- List<Emp> getEmpByCondition(Emp emp) -->
     <select id="getEmpByCondition" resultType="Emp">
         select * from t_emp
+        <trim prefix="where" suffixOverrides="and|or">
+            <if test="empName != null and empName != ''">
+                emp_name = #{empName} and
+            </if>
+            <if test="age != null and age != ''">
+                 age = #{age} and
+            </if>
+            <if test="sex != null and sex != ''">
+                 sex = #{sex} and
+            </if>
+            <if test="email != null and email != ''">
+                 email = #{email} and
+            </if>
+        </trim>
+    </select>
+
+    <!-- List<Emp> getEmpByCondition(Emp emp) -->
+    <select id="getEmpByConditionTwo" resultType="Emp">
+        select * from t_emp
         <where>
             <if test="empName != null and empName != ''">
                 emp_name = #{empName}
